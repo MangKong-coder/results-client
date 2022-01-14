@@ -1,8 +1,25 @@
-import type { Component } from 'solid-js';
+import { Component, For } from 'solid-js';
+import ResultCard from './components/ResultCard';
+import { useFetchResults } from './models/FetchResults';
 
 const App: Component = () => {
+  const { result } = useFetchResults();
+  console.log(result())
   return (
-    <p class="text-4xl text-green-700 text-center py-20">Hello tailwind!</p>
+    <div class="container mx-auto text-center">
+      <h1>Results</h1>
+      <ul>
+        <For each={result()}>
+          {
+            (result) =>    <ResultCard />
+          }
+        </For>
+
+      </ul>
+   
+
+    </div>
+
   );
 };
 

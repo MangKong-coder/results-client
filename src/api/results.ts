@@ -6,7 +6,7 @@ export interface Result {
   accessionNumber: string;
   dateOfCollection: string;
   dateOfRelease: string;
-  _v: number;
+  result: string;
 }
 
 export async function fetchResults(): Promise<Result[]> {
