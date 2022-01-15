@@ -2,7 +2,8 @@ import './index.css';
 import { render } from 'solid-js/web';
 
 import App from './App';
-import { FetchResultsProvider } from './models/FetchResults';
+import { FetchResultProvider } from './models/FetchResults';
+import getResultId from './util/getResultId';
 
 render(() =>
-  <FetchResultsProvider><App /></FetchResultsProvider>, document.getElementById('root') as HTMLElement);
+  <FetchResultProvider id={getResultId()}><App /></FetchResultProvider>, document.getElementById('root') as HTMLElement);

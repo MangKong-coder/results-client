@@ -1,25 +1,41 @@
-import { Component, For } from 'solid-js';
+import { Component, For, JSX, lazy } from 'solid-js';
+import { createRouterTree, Router } from 'solid-tiny-router';
 import ResultCard from './components/ResultCard';
 import { useFetchResults } from './models/FetchResults';
 
-const App: Component = () => {
-  const { result } = useFetchResults();
+const routes = createRouterTree([
+  {
+    path: '/',
+    component: lazy(() => import('./pages'))
+  },
+  {
+    path: 'result/[id]',
+    component: lazy(() => import('./pages/[id]'))
+  }
+])
+
+export function App(): JSX.Element{
+  const result = useFetchResults();
   console.log(result())
   return (
-    <div class="container mx-auto text-center">
-      <h1>Results</h1>
-      <ul>
-        <For each={result()}>
-          {
-            (result) =>    <ResultCard />
-          }
-        </For>
+    // <div class="container mx-auto text-center">
+    //   <h1>Results</h1>
+    //   <ul>
+    //     {/* <For each={result()}>
+    //       {
+    //         (result) =>    <ResultCard />
+    //       }
+    //     </For> */}
+    //     <ResultCard />
 
-      </ul>
-   
+    //   </ul>
 
+
+    // </div>
+
+    <div>
+      <Router routes={routes} />
     </div>
-
   );
 };
 
