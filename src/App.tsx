@@ -1,7 +1,8 @@
-import { Component, For, JSX, lazy } from 'solid-js';
+import { Component, createEffect, For, JSX, lazy } from 'solid-js';
 import { createRouterTree, Router } from 'solid-tiny-router';
 import ResultCard from './components/ResultCard';
 import { useFetchResults } from './models/FetchResults';
+import { TestContext } from './models/testContext';
 
 const routes = createRouterTree([
   {
@@ -9,14 +10,16 @@ const routes = createRouterTree([
     component: lazy(() => import('./pages'))
   },
   {
-    path: 'result/[id]',
+    path: '/results/[id]',
     component: lazy(() => import('./pages/[id]'))
   }
 ])
 
 export function App(): JSX.Element{
   const result = useFetchResults();
-  console.log(result())
+  createEffect(() => {
+    console.log(result())
+  })
   return (
     // <div class="container mx-auto text-center">
     //   <h1>Results</h1>
@@ -32,10 +35,11 @@ export function App(): JSX.Element{
 
 
     // </div>
-
-    <div>
+<TestContext.Provider value={'hello'}>
+    <div class="container">
       <Router routes={routes} />
     </div>
+</TestContext.Provider>
   );
 };
 

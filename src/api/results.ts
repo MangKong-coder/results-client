@@ -1,12 +1,17 @@
+import { GET } from "../util/fetch";
 
 export interface Result {
-  _id: string;
-  test: string;
-  fullName: string;
-  accessionNumber: string;
-  dateOfCollection: string;
-  dateOfRelease: string;
-  result: string;
+  result: {
+    _id: string;
+    test: string;
+    fullName: string;
+    accessionNumber: string;
+    dateOfCollection: string;
+    dateOfRelease: string;
+    output: string;
+    __v: number
+  }
+  
 }
 
 export async function fetchResults(): Promise<Result[]> {
@@ -20,10 +25,10 @@ export async function fetchResults(): Promise<Result[]> {
 }
 
 export async function fetchResult(id: string): Promise<Result> {
-  const data = await fetch(`https://node-result-api.herokuapp.com/result/results/${id}`)
+  const data = await GET(`https://node-result-api.herokuapp.com/result/results/${id}`)
 
   if (data.ok) {
-    const response = await data.json() as Result;
+    const response = await data.json()
     return response
   }
 
@@ -45,4 +50,3 @@ export async function fetchResult(id: string): Promise<Result> {
 //   }
 //   return null;
 // }
-

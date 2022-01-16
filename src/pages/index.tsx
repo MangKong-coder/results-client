@@ -1,8 +1,8 @@
 import { JSX } from "solid-js"
+import ResultCard from "../components/ResultCard"
 
 export default function main(): JSX.Element {
-  console.log('hello')
   return (
-    <h1>Hello World</h1>
+    <ResultCard />
   )
 }

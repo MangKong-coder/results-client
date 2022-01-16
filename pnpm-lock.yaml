@@ -10,17 +10,17 @@ specifiers:
   postcss: ^8.4.5
   prettier: ^2.5.1
   solid-icons: ^0.3.2
-  solid-js: ^1.3.2
-  solid-tiny-router: ^0.2.3
+  solid-js: 1.3.3
+  solid-tiny-router: 0.2.4
   tailwindcss: ^3.0.13
   typescript: ^4.5.4
   vite: ^2.7.10
   vite-plugin-solid: ^2.2.1
 
 dependencies:
-  solid-icons: 0.3.2_solid-js@1.3.2
-  solid-js: 1.3.2
-  solid-tiny-router: 0.2.3_solid-js@1.3.2
+  solid-icons: 0.3.2_solid-js@1.3.3
+  solid-js: 1.3.3
+  solid-tiny-router: 0.2.4_solid-js@1.3.3
 
 devDependencies:
   autoprefixer: 10.4.2_postcss@8.4.5
@@ -2396,16 +2396,21 @@ packages:
       is-fullwidth-code-point: 2.0.0
     dev: true
 
-  /solid-icons/0.3.2_solid-js@1.3.2:
+  /solid-icons/0.3.2_solid-js@1.3.3:
     resolution: {integrity: sha512-pS5HkaI0nVLxAXQ+JVIz9hIJy4COO+3dLptP+3ifHoX1FvTU//3E8/G0PQjUCIHrscgqantGtmazGKWjsnNE3Q==}
     peerDependencies:
       solid-js: '*'
     dependencies:
-      solid-js: 1.3.2
+      solid-js: 1.3.3
     dev: false
 
   /solid-js/1.3.2:
     resolution: {integrity: sha512-BIY63BeKO4vCRqoj/PRcVkt90gnbIg4HhCYqZwsQdwsrFXiqhCycvyqZ1YDBIO8INJdxX5XNLZprmyrt9Mn5IA==}
+    dev: true
+
+  /solid-js/1.3.3:
+    resolution: {integrity: sha512-0pyHpLZIgQDI1Z+MgxXQRPY10dhXfKJdptb4UCJQ9ArQOLq2gtFA1acEsvSAtPMVdqQ8bqj68FOTXLpz6hm2Mg==}
+    dev: false
 
   /solid-refresh/0.4.0_solid-js@1.3.2:
     resolution: {integrity: sha512-5XCUz845n/sHPzKK2i2G2EeV61tAmzv6SqzqhXcPaYhrgzVy7nKTQaBpKK8InKrriq9Z2JFF/mguIU00t/73xw==}
@@ -2418,13 +2423,13 @@ packages:
       solid-js: 1.3.2
     dev: true
 
-  /solid-tiny-router/0.2.3_solid-js@1.3.2:
-    resolution: {integrity: sha512-FHOyeBd+G+E8a0/njxnVChSIfHVKEwOet7M1oQJrHfy4kPstEDL/qqVGXUyGakFKWsykAmqGXmCmv3yDl1JYKA==}
+  /solid-tiny-router/0.2.4_solid-js@1.3.3:
+    resolution: {integrity: sha512-pWgyk2br+yygMOU/rbAGO0EiDSTfc/c7ns3hMKU3HX5kU4WvxNHLVJfyCEZHaXPlek/Gh9NS20YXTy/vQdFKKA==}
     engines: {node: '>=10'}
     peerDependencies:
-      solid-js: ^1.2.0
+      solid-js: ^1.2
     dependencies:
-      solid-js: 1.3.2
+      solid-js: 1.3.3
     dev: false
 
   /source-map-js/1.0.1:
