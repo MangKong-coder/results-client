@@ -2,32 +2,20 @@ import { Accessor, createContext, createResource, createSignal, JSX, useContext,
 
 import { Result, fetchResult } from '../api/results'
 
+type FetchResultResult = Result | undefined | null
+
 interface FetchResultStore {
-  result: Accessor<Result>;
-  mutate: Setter<Result>;
+  result: Resource<FetchResultResult>;
+  mutate: Setter<FetchResultResult>;
   refetch: () => void
 }
 
-const FetchResultsContext = createContext<FetchResultStore>();
+const FetchResultContext = createContext<FetchResultStore>();
 
 interface FetchResultProviderProps {
   children: JSX.Element | JSX.Element[];
   id: string;
 }
-
-// const INITIAL_STATE: Result =
-//     {
-//       "_id": "61b528407740415e0fab4e50",
-//       "test": "Antigen test",
-//       "accessionNumber": "123456789",
-//       "fullName": "Grape Doe",
-//       "dateOfCollection": "2021-12-12T00:00:00.000Z",
-//       "dateOfRelease": "2021-12-12T00:00:00.000Z",
-//       "output": "negative",
-//       "_v": 0
-//     }
-
-
 
 export function FetchResultProvider(props: FetchResultProviderProps) {
   const [result, { mutate, refetch }] = createResource(props.id, fetchResult),
@@ -37,19 +25,17 @@ export function FetchResultProvider(props: FetchResultProviderProps) {
       refetch
     }
 
-  // const [result, setResults] = createSignal<Result>(INITIAL_STATE),
-  // store: FetchResultStore = {
-  //   result: result,
-  //   mutate: setResults
-  // }
-
   return (
-    <FetchResultsContext.Provider value={store}>
+    <FetchResultContext.Provider value={store}>
       {props.children}
-    </FetchResultsContext.Provider>
+    </FetchResultContext.Provider>
   )
 }
 
-export function useFetchResults(): Accessor<Result> {
-  return useContext(FetchResultsContext)?.result
+export function useFetchResults(): Resource<FetchResultResult> {
+  return useContext(FetchResultContext)?.result
+}
+
+export function mutateFetchResults(): Setter<FetchResultResult> {
+  return useContext(FetchResultContext)?.mutate
 }

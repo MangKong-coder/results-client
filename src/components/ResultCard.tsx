@@ -1,14 +1,12 @@
-import { HiSolidCheck, HiSolidCheckCircle, HiSolidX, HiSolidXCircle } from "solid-icons/hi"
-import { createEffect, For, JSX, Show } from "solid-js"
+import { format } from "date-fns"
+import { HiSolidCheckCircle, HiSolidXCircle } from "solid-icons/hi"
+import { JSX, Show } from "solid-js"
 import { useFetchResults } from "../models/FetchResults"
 import composeClassnames from "../util/composeClassnames"
 
 
 function ResultCard(): JSX.Element {
   const result = useFetchResults()
-  createEffect(() => {
-    console.log(result())
-  })
   return (
     <Show when={result()?.result}>
       {(value) => (<div class="text-center w-screen">
@@ -26,11 +24,11 @@ function ResultCard(): JSX.Element {
         </div>
         <div class="flex space-x-1 font-semibold">
           <h2>Date of Collection:</h2>
-          <h2>{value.dateOfCollection?.split('T')[0]}</h2>
+          <h2>{value.dateOfCollection}</h2>
         </div>
         <div class="flex space-x-1 font-semibold">
           <h2>Date of Result:</h2>
-          <h2>{value.dateOfRelease?.split('T')[0]}</h2>
+          <h2>{value.dateOfRelease}</h2>
         </div>
         <div class={composeClassnames('font-bold text-5xl md:text-6xl mt-9', value.output?.toLowerCase() == 'positive' ? 'text-red-500' : 'text-green-500')}>
         <Show when={value.output?.toLowerCase() == 'positive'} fallback={<span class="flex justify-center items-start"><h1>{value.output?.toUpperCase()}</h1> <HiSolidCheckCircle /></span>}>
@@ -38,15 +36,10 @@ function ResultCard(): JSX.Element {
             <h1>{value.output?.toUpperCase()}</h1> <HiSolidXCircle class="text-5xl" />
           </span>
         </Show>
-          
         </div>
-        
       </div>
     </div>)}
     </Show>
-    
-
-
   )
 }
 

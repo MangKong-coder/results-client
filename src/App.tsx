@@ -1,10 +1,11 @@
-import { Component, createEffect, For, JSX, lazy } from 'solid-js';
+// ANCHOR SOLID IMPORTS
+import { JSX, lazy } from 'solid-js';
 import { createRouterTree, Router, Link } from 'solid-tiny-router';
-import ResultCard from './components/ResultCard';
-import { useFetchResults } from './models/FetchResults';
-import { TestContext } from './models/testContext';
+
+// ANCHOR IMAGES
 import NotFoundSVG from './images/404.svg'
 
+// ANCHOR ROUTES
 const routes = createRouterTree([
   {
     path: '/',
@@ -12,7 +13,15 @@ const routes = createRouterTree([
   },
   {
     path: '/results/[id]',
-    component: lazy(() => import('./pages/[id]'))
+    component: lazy(() => import('./pages/[id]/[id]'))
+  },
+  {
+    path: '/results/[id]/edit',
+    component: lazy(() => import('./pages/[id]/edit'))
+  },
+  {
+    path: '/results/create',
+    component: lazy(() => import('./pages/create'))
   }
 ])
 
@@ -28,17 +37,14 @@ function NotFound(): JSX.Element {
 
 function Footer(): JSX.Element {
   return (
-    <footer class='text-center text-purple-400 mt-36'>
+    <footer class='text-center text-purple-500 mt-36 absolute bottom-0 w-full'>
       <p>{`© 2022-${new Date().getFullYear()} James Domingo - All Rights Reserved.`}</p>
     </footer>
   )
 }
 
 export function App(): JSX.Element{
-  const result = useFetchResults();
-  createEffect(() => {
-    console.log(result())
-  })
+
   return (
     <>
       <Router routes={routes} fallback={NotFound} />

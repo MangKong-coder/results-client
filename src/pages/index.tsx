@@ -1,4 +1,7 @@
+// ANCHOR SOLID IMPORTS 
 import { JSX } from "solid-js"
+
+// ANCHOR IMAGES
 import WelcomeSVG from '../images/welcome.svg'
 
 export default function main(): JSX.Element {
