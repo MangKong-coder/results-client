@@ -1,5 +1,5 @@
 // ANCHOR UTILS
-import { GET, POST } from "../util/fetch";
+import { GET, POST, PUT } from "../util/fetch";
 
 export interface Result {
   result: {
@@ -48,8 +48,8 @@ export async function fetchResult(accesionNumber: string): Promise<Result> {
 }
 
 // ANCHOR UPDATE RESULT
-export async function updateResult(id: string): Promise<Result> {
-  const data = await fetch(`https://node-result-api.herokuapp.com/result/results/${id}`, {
+export async function updateResult(accesionNumber: string, result: ResultInput): Promise<Result> {
+  const data = await PUT(`https://node-result-api.herokuapp.com/result/results/${accesionNumber}`, result, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
