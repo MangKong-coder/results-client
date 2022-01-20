@@ -2,6 +2,7 @@
 import { GET, POST } from "../util/fetch";
 
 export interface Result {
+  result: {
     _id: string;
     test: string;
     fullName: string;
@@ -9,8 +10,10 @@ export interface Result {
     dateOfCollection: string;
     dateOfRelease: string;
     output: string;
-    __v: number
-}
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+}}
 
 export interface ResultInput {
   test: string;
@@ -33,11 +36,11 @@ export async function fetchResults(): Promise<Result[]> {
 }
 
 // ANCHOR GET SINGLE RESULT
-export async function fetchResult(id: string): Promise<Result> {
-  const data = await GET(`https://node-result-api.herokuapp.com/result/results/${id}`)
+export async function fetchResult(accesionNumber: string): Promise<Result> {
+  const data = await GET(`https://node-result-api.herokuapp.com/result/results/${accesionNumber}`)
 
   if (data.ok) {
-    const response = await data.json()
+    const response = await data.json() as Result
     return response
   }
 
@@ -63,9 +66,7 @@ export async function updateResult(id: string): Promise<Result> {
 
 // ANCHOR CREATE RESULT
 export async function createResult(result: ResultInput): Promise<Result> {
-  const data = await fetch("https://node-result-api.herokuapp.com/result/results/", {
-    method: 'POST',
-    body: JSON.stringify(result),
+  const data = await POST("https://node-result-api.herokuapp.com/result/results/", result, {
     headers: {
       'Content-Type': 'application/json'
     }

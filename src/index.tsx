@@ -3,7 +3,7 @@ import { render } from 'solid-js/web';
 
 import App from './App';
 import { FetchResultProvider } from './models/FetchResults';
-import getResultId from './util/getResultId';
+import getResultNumber from './util/getResultNumber';
 
 render(() =>
-  <FetchResultProvider id={getResultId()}><App /></FetchResultProvider>, document.getElementById('root') as HTMLElement);
+  <FetchResultProvider id={getResultNumber()}><App /></FetchResultProvider>, document.getElementById('root') as HTMLElement);

@@ -1,14 +1,18 @@
 import { format } from "date-fns"
+import { parseISO } from "date-fns/esm"
 import { HiSolidCheckCircle, HiSolidXCircle } from "solid-icons/hi"
-import { JSX, Show } from "solid-js"
+import { createEffect, JSX, Show } from "solid-js"
 import { useFetchResults } from "../models/FetchResults"
 import composeClassnames from "../util/composeClassnames"
 
 
 function ResultCard(): JSX.Element {
   const result = useFetchResults()
+  if (!result) {
+    return null
+  }
   return (
-    <Show when={result()}>
+    <Show when={result()?.result[0]}>
       {(value) => (<div class="text-center w-screen">
       <div class="bg-purple-500 py-10 text-4xl md:py-20 md:text-5xl text-white font-bold">
         <h1>{value.test}</h1>
@@ -24,11 +28,11 @@ function ResultCard(): JSX.Element {
         </div>
         <div class="flex space-x-1 font-semibold">
           <h2>Date of Collection:</h2>
-          <h2>{value.dateOfCollection}</h2>
+          <h2>{format(parseISO(value.dateOfCollection), 'MMMM dd yyyy')}</h2>
         </div>
         <div class="flex space-x-1 font-semibold">
           <h2>Date of Result:</h2>
-          <h2>{value.dateOfRelease}</h2>
+          <h2>{format(parseISO(value.dateOfRelease), 'MMMM dd yyyy')}</h2>
         </div>
         <div class={composeClassnames('font-bold text-5xl md:text-6xl mt-9', value.output?.toLowerCase() == 'positive' ? 'text-red-500' : 'text-green-500')}>
         <Show when={value.output?.toLowerCase() == 'positive'} fallback={<span class="flex justify-center items-start"><h1>{value.output?.toUpperCase()}</h1> <HiSolidCheckCircle /></span>}>
