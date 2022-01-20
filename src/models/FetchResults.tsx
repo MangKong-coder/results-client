@@ -1,41 +1,35 @@
-import { Accessor, createContext, createResource, createSignal, JSX, useContext, Setter, Resource } from "solid-js";
+import { createContext, Resource, JSX, createResource, useContext, Setter } from "solid-js";
+import { fetchResults, Result, Results } from "../api/results";
 
-import { Result, fetchResult } from '../api/results'
+type FetchResultsResult = Results | undefined | null
 
-type FetchResultResult = Result | undefined | null
-
-interface FetchResultStore {
-  result: Resource<FetchResultResult>;
-  mutate: Setter<FetchResultResult>;
-  refetch: () => void
+interface FetchResultsStore {
+    results: Resource<FetchResultsResult>;
+    mutate: Setter<FetchResultsResult>;
+    refetch: () => void;
 }
 
-const FetchResultContext = createContext<FetchResultStore>();
+const FetchResultsContext = createContext<FetchResultsStore>();
 
-interface FetchResultProviderProps {
-  children: JSX.Element | JSX.Element[];
-  id: string;
+interface FetchResultsProps {
+    children: JSX.Element | JSX.Element[];
 }
 
-export function FetchResultProvider(props: FetchResultProviderProps) {
-  const [result, { mutate, refetch }] = createResource(props.id, fetchResult),
-    store: FetchResultStore = {
-      result,
-      mutate,
-      refetch
+export function FetchResultsProvider(props: FetchResultsProps): JSX.Element {
+    const [results, {mutate, refetch}] = createResource(fetchResults)
+    const store: FetchResultsStore = {
+        results,
+        mutate, 
+        refetch
     }
 
-  return (
-    <FetchResultContext.Provider value={store}>
-      {props.children}
-    </FetchResultContext.Provider>
-  )
-}
+    return (
+        <FetchResultsContext.Provider value={store}>
+            {props.children}
+        </FetchResultsContext.Provider>
+    )
+} 
 
-export function useFetchResults(): Resource<FetchResultResult> {
-  return useContext(FetchResultContext)?.result
-}
-
-export function mutateFetchResults(): Setter<FetchResultResult> {
-  return useContext(FetchResultContext)?.mutate
+export function useFetchResults(): Resource<FetchResultsResult> {
+    return useContext(FetchResultsContext)?.results;
 }

@@ -2,8 +2,14 @@ import './index.css';
 import { render } from 'solid-js/web';
 
 import App from './App';
-import { FetchResultProvider } from './models/FetchResults';
+import { FetchResultByIdProvider } from './models/FetchResultById';
 import getResultNumber from './util/getResultNumber';
+import { FetchResultsProvider } from './models/FetchResults';
 
 render(() =>
-  <FetchResultProvider id={getResultNumber()}><App /></FetchResultProvider>, document.getElementById('root') as HTMLElement);
+  <FetchResultByIdProvider id={getResultNumber()}>
+    <FetchResultsProvider>
+      <App />
+    </FetchResultsProvider>
+  </FetchResultByIdProvider>,
+ document.getElementById('root') as HTMLElement);

@@ -12,6 +12,10 @@ const routes = createRouterTree([
     component: lazy(() => import('./pages'))
   },
   {
+    path: '/results',
+    component: lazy(() => import('./pages/results'))
+  },
+  {
     path: '/results/[id]',
     component: lazy(() => import('./pages/[id]/[id]'))
   },

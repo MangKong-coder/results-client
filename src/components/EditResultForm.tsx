@@ -2,7 +2,7 @@
 import { HiSolidArrowCircleRight } from "solid-icons/hi";
 import { createEffect, createSignal, For, JSX } from "solid-js";
 import { createResult, Result, updateResult } from "../api/results";
-import { useFetchResults } from "../models/FetchResults";
+import { useFetchResultById } from "../models/FetchResultById";
 
 
 interface SubmitBlockProps {
@@ -62,7 +62,7 @@ export function EditResultForm(props: ResultFormProps): JSX.Element {
   const [dateofCollection, setDateOfCollection] = createSignal(INITIAL_DATE)
   const [dateofRelease, setDateOfRelease] = createSignal(INITIAL_DATE)
   const [output, setOutput] = createSignal(INTITIAL_TEST_OUTPUT)
-  const result = useFetchResults()
+  const result = useFetchResultById()
 
   createEffect(() => {
     const singleResult = result()?.result[0]

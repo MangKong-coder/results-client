@@ -1,6 +1,7 @@
 // ANCHOR IMPORTS
 import { HiSolidArrowCircleRight } from "solid-icons/hi";
 import { createSignal, For, JSX } from "solid-js";
+import { Link } from "solid-tiny-router";
 import { createResult, Result } from "../api/results";
 
 
@@ -189,14 +190,16 @@ export function CreateResultForm(props: ResultFormProps): JSX.Element {
                   </For>
                   </select>
             </div>
+            <a href={`/results/${accesion()}}`}>
+              <button
+                type="submit"
+                class="inline-flex mt-2 text-center justify-center items-center text-lg px-6 py-3 border border-transparent shadow-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 w-full"
+              >
+                Submit
+                <HiSolidArrowCircleRight />
+              </button>
 
-            <button
-              type="submit"
-              class="inline-flex mt-2 text-center justify-center items-center text-lg px-6 py-3 border border-transparent shadow-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 w-full"
-            >
-              Submit
-              <HiSolidArrowCircleRight />
-            </button>
+            </a>
           </SubmitBlock>
         </div>
       </div>

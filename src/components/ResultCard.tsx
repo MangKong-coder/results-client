@@ -2,17 +2,17 @@ import { format } from "date-fns"
 import { parseISO } from "date-fns/esm"
 import { HiSolidCheckCircle, HiSolidXCircle } from "solid-icons/hi"
 import { createEffect, JSX, Show } from "solid-js"
-import { useFetchResults } from "../models/FetchResults"
+import { useFetchResultById } from "../models/FetchResultById"
 import composeClassnames from "../util/composeClassnames"
 
 
 function ResultCard(): JSX.Element {
-  const result = useFetchResults()
+  const result = useFetchResultById()
   if (!result) {
     return null
   }
   return (
-    <Show when={result()?.result[0]}>
+    <Show when={result()?.result}>
       {(value) => (<div class="text-center w-screen">
       <div class="bg-purple-500 py-10 text-4xl md:py-20 md:text-5xl text-white font-bold">
         <h1>{value.test}</h1>

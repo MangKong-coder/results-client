@@ -2,7 +2,6 @@
 import { GET, POST, PUT } from "../util/fetch";
 
 export interface Result {
-  result: {
     _id: string;
     test: string;
     fullName: string;
@@ -13,7 +12,11 @@ export interface Result {
     createdAt: string;
     updatedAt: string;
     __v: number;
-}}
+}
+
+export interface Results {
+  result: Result[]
+}
 
 export interface ResultInput {
   test: string;
@@ -24,18 +27,18 @@ export interface ResultInput {
   output: string;
 }
 
-// ANCHOR GET ALL RESULTS
-export async function fetchResults(): Promise<Result[]> {
+// SECTION GET ALL RESULTS
+export async function fetchResults(): Promise<Results> {
   const data = await fetch('https://node-result-api.herokuapp.com/result/results')
   
   if (data.ok) {
-    const response = await data.json() as Result[]
+    const response = await data.json() as Results
     return response
   }
   return null
 }
 
-// ANCHOR GET SINGLE RESULT
+// SECTION GET SINGLE RESULT
 export async function fetchResult(accesionNumber: string): Promise<Result> {
   const data = await GET(`https://node-result-api.herokuapp.com/result/results/${accesionNumber}`)
 
@@ -47,7 +50,7 @@ export async function fetchResult(accesionNumber: string): Promise<Result> {
   return null
 }
 
-// ANCHOR UPDATE RESULT
+// SECTION UPDATE RESULT
 export async function updateResult(accesionNumber: string, result: ResultInput): Promise<Result> {
   const data = await PUT(`https://node-result-api.herokuapp.com/result/results/${accesionNumber}`, result, {
     method: 'PUT',
@@ -64,7 +67,7 @@ export async function updateResult(accesionNumber: string, result: ResultInput):
 }
 
 
-// ANCHOR CREATE RESULT
+// SECTION CREATE RESULT
 export async function createResult(result: ResultInput): Promise<Result> {
   const data = await POST("https://node-result-api.herokuapp.com/result/results/", result, {
     headers: {
@@ -74,6 +77,18 @@ export async function createResult(result: ResultInput): Promise<Result> {
 
   if (data.ok) {
     const response = await data.json() as Result;
+    return response
+  }
+}
+
+// SECTION DELETE RESULT
+export async function deleteResult(id: string): Promise<string> {
+  const data = await fetch(`https://node-result-api.herokuapp.com/result/results/${id}`, {
+    method: 'DELETE'
+  })
+
+  if (data.ok) {
+    const response = await data.json() as string;
     return response
   }
 }
