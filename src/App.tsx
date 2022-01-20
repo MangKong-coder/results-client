@@ -37,7 +37,7 @@ function NotFound(): JSX.Element {
 
 function Footer(): JSX.Element {
   return (
-    <footer class='text-center text-purple-500 mt-36 absolute bottom-0 w-full'>
+    <footer class='text-center text-purple-500 mt-2 absolute bottom-0 w-full'>
       <p>{`© 2022-${new Date().getFullYear()} James Domingo - All Rights Reserved.`}</p>
     </footer>
   )

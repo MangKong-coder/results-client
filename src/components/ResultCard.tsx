@@ -8,7 +8,7 @@ import composeClassnames from "../util/composeClassnames"
 function ResultCard(): JSX.Element {
   const result = useFetchResults()
   return (
-    <Show when={result()?.result}>
+    <Show when={result()}>
       {(value) => (<div class="text-center w-screen">
       <div class="bg-purple-500 py-10 text-4xl md:py-20 md:text-5xl text-white font-bold">
         <h1>{value.test}</h1>

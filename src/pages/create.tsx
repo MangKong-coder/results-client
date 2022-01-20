@@ -6,8 +6,8 @@ import { CreateResultForm } from '../components/CreateResultForm'
 
 export default function CreateResultPage(): JSX.Element {
     return (
-        <h1>
+        <div class=''>
             <CreateResultForm />
-        </h1>
+        </div>
     )
 }

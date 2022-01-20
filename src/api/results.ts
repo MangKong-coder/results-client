@@ -2,17 +2,23 @@
 import { GET, POST } from "../util/fetch";
 
 export interface Result {
-  result: {
     _id: string;
     test: string;
     fullName: string;
     accessionNumber: string;
-    dateOfCollection: number;
-    dateOfRelease: number;
+    dateOfCollection: string;
+    dateOfRelease: string;
     output: string;
     __v: number
-  }
-  
+}
+
+export interface ResultInput {
+  test: string;
+  fullName: string;
+  accessionNumber: string;
+  dateOfCollection: string;
+  dateOfRelease: string;
+  output: string;
 }
 
 // ANCHOR GET ALL RESULTS
@@ -56,8 +62,8 @@ export async function updateResult(id: string): Promise<Result> {
 
 
 // ANCHOR CREATE RESULT
-export async function createResult(result: Result): Promise<Result> {
-  const data = await POST("https://node-result-api.herokuapp.com/result/results/", {
+export async function createResult(result: ResultInput): Promise<Result> {
+  const data = await fetch("https://node-result-api.herokuapp.com/result/results/", {
     method: 'POST',
     body: JSON.stringify(result),
     headers: {
