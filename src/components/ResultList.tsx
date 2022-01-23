@@ -17,18 +17,18 @@ export default function ResultList(): JSX.Element {
     })
     return (
         <div class="">
-            <div class=" w-3/5 mx-auto mt-4 md:mt-2 p-5">
+            <div class="bg-purple-500 py-10 text-4xl md:py-20 md:text-5xl text-white font-bold text-center">
+                <h1>Results</h1>
+            </div>
+            <div class=" w-3/5 mx-auto mt-4 md:mt-2">
                 <ul class="space-y-2 divide-y divide-gray-400">
                     <For each={results()?.result} fallback={
-                    <div class="text-center my-10 space-y-6">
-                    <img class="mx-auto w-3/5" src={BlankSlateSVG} alt="blank"/> 
-                    <a href="/results/create" class="text-2xl text-purple-500 underline underline-offset-1 mt-3">Create Results Here</a>
+                    <div class="text-center">
+                    <img class="mx-auto w-1/2" src={BlankSlateSVG} alt="blank"/> 
+                    <a href="/results/create" class="text-xl text-purple-500 underline underline-offset-1">Create results here</a>
                     </div>}>
                         {(item) => (
                             <li class="gap-4 p-3">
-                                <div class="bg-purple-500 py-10 text-4xl md:py-20 md:text-5xl text-white font-bold text-center">
-                                    <h1>Results</h1>
-                                </div>
                                 <div class="flex flex-row items-center ">
                                     <a href={`/results/${item.accessionNumber}`}>
                                         <h2 class="text-purple-500  text-md font-semibold">
