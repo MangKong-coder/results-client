@@ -26,7 +26,7 @@ export default function ResultList(): JSX.Element {
                     <div class="text-center">
                     <h2 class="text-center text-5xl font-bold">No Results</h2>
                     <img class="mx-auto w-1/2" src={BlankSlateSVG} alt="blank"/> 
-                    <Link href="/results/create" class="text-xl text-purple-500 underline underline-offset-1">Create here</Link>
+                    <a href="/results/create" class="text-xl text-purple-500 underline underline-offset-1">Create here</a>
                     </div>}>
                         {(item) => (
                             <li class="gap-4 p-3">
