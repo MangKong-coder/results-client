@@ -65,7 +65,7 @@ export function EditResultForm(props: ResultFormProps): JSX.Element {
   const result = useFetchResultById()
 
   createEffect(() => {
-    const singleResult = result()?.result[0]
+    const singleResult = result()?.result
     if (singleResult) {
       setTests(singleResult.test)
       setAccession(singleResult.accessionNumber)
@@ -79,11 +79,11 @@ export function EditResultForm(props: ResultFormProps): JSX.Element {
     return (
       <div class="">
         <div class="bg-purple-500 py-10 text-4xl md:py-20 md:text-5xl text-white font-bold text-center">
-        <h1>Edit Result of {result()?.result[0].accessionNumber}</h1>
+        <h1>Edit Result of {result()?.result.accessionNumber}</h1>
         </div>
         <div class="container mx-auto w-full md:w-2/5">
           <SubmitBlock
-          onSubmit={async () => await updateResult(result()?.result[0].accessionNumber, {
+          onSubmit={async () => await updateResult(result()?.result.accessionNumber, {
             test: tests(),
             fullName: name(),
             accessionNumber: accesion(),
